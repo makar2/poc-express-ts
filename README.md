@@ -117,53 +117,7 @@
         npm install -D @types/express  @types/morgan @types/node nodemon
         ```
 
-    1. Simple starter app
-        ```typescript
-        // src/app.ts
-        import dotenv from 'dotenv';
-        dotenv.config();
-
-        import express, { Request, Response, NextFunction } from 'express';
-        import logger from 'morgan';
-
-        const app = express();
-
-        app.use(logger('dev'));
-        app.use(express.json());
-        app.use(express.urlencoded({ extended: false }));
-
-        app.get('/favicon.ico', (req, res) => res.status(204));
-        app.get('/', (req, res) => {
-          const response = {
-            status: 'ok',
-            message: 'Hello TypeScript',
-          };
-          res.json(response);
-        });
-
-        app.use((req, res) => {
-          res.sendStatus(404);
-        });
-
-        app.use(
-          (
-            err: any,
-            req: Request,
-            res: Response,
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            next: NextFunction,
-          ) => {
-            res.sendStatus(err.status || 500);
-            res.json({ err });
-          },
-        );
-
-        const port = process.env.PORT || 3000;
-
-        app.listen(port, () => {
-          console.info(`listening on port ${port}`);
-        });
-        ```
+    1. Build the simple Express app in `src/app.ts` file
 
 1. ## In-Docker development
     
@@ -178,8 +132,8 @@
 
         FROM node:alpine
         WORKDIR /app
-        COPY package*.json .npmrc ./
-        RUN npm install
+        COPY package*.json ./
+        RUN npm ci
         COPY . .
         CMD npm run start:prod
         ```

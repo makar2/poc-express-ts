@@ -1,0 +1,45 @@
+{
+  "name": "poc-express-ts",
+  "version": "1.0.0",
+  "description": "1. ## Node project from scratch     1. Init         ```bash         npm init -y         ```",
+  "main": "dist/app.js",
+  "scripts": {
+    "eslint": "eslint './src/**/*.ts'",
+    "lint": "tsc; npm run eslint",
+    "start:prod": "tsc && NODE_ENV=production node -r ts-node/register -r tsconfig-paths/register .",
+    "start": "nodemon -e 'ts json' --exec \"ts-node -r tsconfig-paths/register src/app.ts\"",
+    "compose-up-local": "docker compose -f docker-compose.yml -f docker-compose-local.yml up -d",
+    "start:docker": "npm start; tail -f /dev/null",
+    "idd": "pkill -f ^nodemon; npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/makar2/poc-express-ts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/makar2/poc-express-ts/issues"
+  },
+  "homepage": "https://github.com/makar2/poc-express-ts#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.14",
+    "@types/morgan": "^1.9.3",
+    "@types/node": "^18.8.0",
+    "@typescript-eslint/eslint-plugin": "^5.38.1",
+    "@typescript-eslint/parser": "^5.38.1",
+    "eslint": "^8.24.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-import-resolver-typescript": "^3.5.1",
+    "eslint-plugin-import": "^2.26.0",
+    "nodemon": "^2.0.20",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.1",
+    "morgan": "^1.10.0"
+  }
+}

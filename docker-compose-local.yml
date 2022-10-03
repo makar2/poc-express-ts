@@ -1,0 +1,8 @@
+version: "3.8"
+services:
+  poc-express-ts:
+    command: npm run start:docker
+    stop_grace_period: 3s
+    volumes:
+      - ./:/app
+      - /app/node_modules
